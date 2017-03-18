@@ -36,9 +36,18 @@
 		var hours=date.getHours() % 12*30;
 		var minutes=date.getMinutes()*6;
 		var seconds=date.getSeconds()*6;
-		secondHand.transform("r"+seconds+",150,150");
-		minuteHand.transform("r"+minutes+",150,150");
-		hourHand.transform("r"+hours+",150,150");
+		// secondHand.transform("r"+seconds+",150,150");
+		// minuteHand.transform("r"+minutes+",150,150");
+		// hourHand.transform("r"+hours+",150,150");
+		secondHand.animate({
+			transform:("r"+seconds+",150,150")
+		},1000);
+		minuteHand.animate({
+			transform:("r"+minutes+",150,150")
+		},1000);
+		hourHand.animate({
+			transform:("r"+hours+",150,150")
+		},1000);
 	}
 	</script>
 </body>
