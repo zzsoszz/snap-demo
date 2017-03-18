@@ -6,73 +6,32 @@
 	<script src="js/snap.svg.js"></script>
 </head>
 <body>
-	<svg id="svg" width="400" height="400"></svg>
+	<div id="icon-house">
+	</div>
 	<script>
-		
-		window.onload=function(){
-			var s=Snap("#svg");
-			var base=s.rect(50,100,100,75);
-			var roof=s.polygon(35,100,165,100,100,50);
-			// base.attr({
-			// 	fill:"red"
-			// });
-			// roof.attr({
-			// 	fill:"red"
-			// });
+		var icon=Snap("#icon-house");
+		Snap.load("icon.svg",function (data) {
+			icon.append(data);
+			var house=icon.select("#house");
+			house.attr({
+				fill:"red"
+			});
 
+			house.hover(function(){
+				house.animate({
+					transform:"s1.2,100,100",
+					opacity:0.7
+				},500,mina.elastic);
+			});
 
-			// var house=s.g(base,roof);
-			// house.attr({
-			// 	fill:"red"
-			// 	//,stroke:"black"
-			// });
-			// var chimney=s.rect(65,50,15,30);
-			// house.add(chimney);
+			house.mouseout(function(){
+				house.animate({
+					transform:"s1,100,100",
+					opacity:1
+				},500,mina.elastic);
+			});
 			
-			
-			// base.animate({height:300},1000,function(){
-			// 	house.animate({
-			// 		transform:"t200,0"
-			// 	},2000,mina.elastic,function(){
-			// 		base.animate({height:75},1000,mina.elastic);
-			// 	});
-			// });
-			
-			
-			// base.animate({height:300},1000,function(){
-			// 	house.animate({
-			// 		transform:"t200,0"
-			// 	},2000,function(){
-			// 		base.animate({height:75},1000);
-			// 	});
-			// });
-
-
-			//house.animate({transform:"s2,0,0r45,100,100t100,0"},1000);
-			//house.animate({transform:"t100,0"},1000);
-			//house.animate({transform:"s2,0,0"},1000);
-			//house.animate({transform:"r45,0,0"},1000);
-			//house.transform("s.5,0,0");
-			//chimney.transform("t100,100");
-			//house.transform("r45,0,0");
-			//house.transform("t100,0r45s.5");
-
-
-			// s.circle(100,100,100).attr({
-			// 	fill:"red",
-			// 	stroke:"green",
-			// 	strokeWidth:"10"
-			// });
-			//s.rect(200,0,200,200);
-			//s.ellipse(200,200,100,200);
-			//s.rect(0,0,400,400,20,20);
-			// s.line(0,0,400,400).attr({
-			// 	stroke:"#F00"
-			// });
-			//var polygon=s.polyline(0,0,50,50,100,150);
-
-		};
-
+		});
 	</script>
 </body>
 </html>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 400 400">
+<style stype="text/css">
+	.st0{
+		fill:#2F62AD;
+	}
+</style>
+<g id="bg">
+	<circle class="st0" cx="100" cy="100" r="72.698">
+	</circle>
+</g>
+<g id="house">
+	<circle cx="200" cy="200" r="50">
+	</circle>
+</g>
+
+</svg>
