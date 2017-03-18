@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>snap.svg</title>
+	<script src="js/snap.svg.js"></script>
+</head>
+<body>
+	<div id="clock" style="width: 300px;height: 300px;">
+	</div>
+	<script>
+	var secondHand,minuteHand,hourHand;
+	window.onload=function()
+	{
+		var clock=Snap("#clock");
+		Snap.load("clock.svg",function (data) {
+			clock.append(data);
+			secondHand=clock.select("#second_hand");
+			minuteHand=clock.select("#minute_hand");
+			hourHand=clock.select("#hour_hand");
+			secondHand.transform("r45,150,150");
+			minuteHand.transform("r205,150,150");
+			hourHand.transform("r180,150,150");
+			var timer=setInterval(showTime,1000);
+		});
+		// var date=new Date();
+		// var hours=date.getHours() % 12;
+		// var minutes=date.getMinutes();
+		// var seconds=date.getSeconds();
+		// alert(hours+" "+minutes+" "+seconds);
+	}
+
+	function showTime()
+	{
+		var date=new Date();
+		var hours=date.getHours() % 12*30;
+		var minutes=date.getMinutes()*6;
+		var seconds=date.getSeconds()*6;
+		secondHand.transform("r"+seconds+",150,150");
+		minuteHand.transform("r"+minutes+",150,150");
+		hourHand.transform("r"+hours+",150,150");
+	}
+	</script>
+</body>
+</html>
