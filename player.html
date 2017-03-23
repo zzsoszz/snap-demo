@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>snap.svg</title>
+	<script src="js/jquery-3.2.0.js"></script>
+	<script src="js/snap.svg.js"></script>
+	<style type="text/css">
+		.container {
+		    width: 500px;
+		    margin: 0 auto;
+		}
+		.button {
+		    padding: 0;
+		    width: 500px;
+		    height: 500px;
+		    border: 0;
+		    background-color: white;
+		    outline: none;
+		}
+	</style>
+	<script>
+		$(document).ready(function(){
+			
+			var playButton = {
+			    el: document.querySelector(".js-button"),
+			    iconEls: {
+			        playing: document.querySelector("#pause-icon"),
+			        paused:  document.querySelector("#play-icon")
+			    },
+			    nextState: {
+			        playing: "paused",
+			        paused:  "playing"
+			    },
+			    init: function () {
+			        this.setInitialState();
+			        this.replaceUseEl();
+			        this.el.addEventListener("click", this.toggle.bind(this));
+			    },
+			    setInitialState: function () {
+			      var initialIconRef = this.el.querySelector("use").getAttribute("xlink:href");
+			      this.state = this.el.querySelector(initialIconRef).getAttribute("data-state");
+			    },
+			    replaceUseEl: function () {
+			        var path = Snap("#svgicon").paper.path();
+			        $(".js-button").find("use").remove();
+			        Snap("#svgicon").append(path);
+			        path.attr("class", "js-icon").attr("d", this.stateIconPath());
+			    },
+			    toggle: function () {
+			        var path = Snap.select('.js-icon');
+			        this.goToNextState();
+			        path.animate({
+			            d:this.stateIconPath()
+			        },500,mina.linear);
+			    },
+			    goToNextState: function () {
+			        this.state = this.nextState[this.state];
+			    },
+			    stateIconPath: function () {
+			        return this.iconEls[this.state].getAttribute("d");
+			    }
+			};
+			playButton.init();
+
+		});
+	</script>
+</head>
+<body>
+
+<div class="container">
+    <button class="button js-button">
+        <svg width="100%" height="100%" viewBox="0 0 36 36" id="svgicon" >
+            <defs>
+                <path id="pause-icon" data-state="playing" d="M11,10 L17,10 17,26 11,26 M20,10 L26,10 26,26 20,26" />
+                <path id="play-icon"  data-state="paused"  d="M11,10 L18,13.74 18,22.28 11,26 M18,13.74 L26,18 26,18 18,22.28" />
+            </defs>
+            <use xlink:href="#play-icon" />
+        </svg>
+    </button>
+</div>
+
+
+</body>
+</html>
